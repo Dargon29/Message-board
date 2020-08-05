@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>messagesBoard</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="wrap">
+        <div class="messages_hd">
+            <span class="helloMess" id="helloMess">时间字符串：早上好！</span>
+            <span class="user">当前用户：</span>
+            <h1 class="title">我 的 留 言 板</h1>
+            <div class="section">
+                <input type="text" name="messipt" id="messipt" placeholder="有什么想说的...">
+                <input class="submit" type="submit" value="Add" id="add">
+            </div>
+        </div>
+        <div class="messages_bd" id="messages_bd">
+            <form action="" class="messagesbars" id="currform">
+                <span class="date">时间字符串</span>
+                <input class="messbar" type="text" name="" id="" value="留言内容">
+                <input class="del" type="submit" id="currbtn" name="" value="x">
+            </form>
+        </div>
+    </div>
+    <script>
+        // 获取当前时间函数
+        function getTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var dates = date.getDate();
+            var week = date.getDay();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            var arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六',]; /*  转换为中文格式的星期：利用数组，索引号 */
+            function format(num) {
+                return num = num < 10 ? '0' + num : num;
+            }
+            month = format(month);
+            dates = format(dates);
+            hour = format(hour);
+            minute = format(minute);
+            second = format(second);
+            return hour + ':' + minute + ':' + second;
+        }
+        /* console.log(h); */
+        function getHelloMess(h) {
+            var str = '';
+            if (h >= 0 && h < 6) {
+                str += '夜深了，早点休息哟 ~ ';
+            } else if (h >= 6 && h <= 7) {
+                str += '早上好！';
+            } else if (h < 12) {
+                str += '上午好！又是充满希望的一天！';
+            } else if (h >= 12 && h <= 14) {
+                str += '中午好';
+            } else if (h <= 18) {
+                str += '下午好！';
+            } else if (h < 24) {
+                str += '晚上好！';
+            }
+            return str;
+        }
+        // 获取当前时间的 h 值
+        var date = new Date();
+        var h = date.getHours();
+        /* console.log(getHelloMess(h)); */
+        // 获取 helloMess 元素
+        var helloMess = document.getElementById('helloMess');
+        helloMess.innerHTML = getTime() + ' ' + getHelloMess(h);
+    </script>
+    <script src="js/index.js"> </script>
+
+</body>
+
+</html>
